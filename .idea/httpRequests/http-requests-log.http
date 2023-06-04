@@ -1,0 +1,27 @@
+GET http://localhost:8080/getAllAuthors
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-05-30T220143.200.txt
+
+###
+
+GET http://localhost:8080/getAuthor/1
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-05-30T215539.500.html
+
+###
+
+GET http://localhost:8080/showUserAgent
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.6)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-05-30T215513.404.html
+
+###
+

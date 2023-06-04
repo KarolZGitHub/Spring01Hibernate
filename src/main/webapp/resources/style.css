@@ -1,0 +1,74 @@
+/* Resetowanie stylów dla elementów formularza */
+form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Stylowanie głównego kontenera formularza */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Stylowanie nagłówka formularza */
+form h2 {
+    margin-top: 0;
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+}
+
+/* Stylowanie pojedynczego pola formularza */
+form div {
+    margin-bottom: 10px;
+}
+
+/* Stylowanie etykiety pola formularza */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+/* Stylowanie pola tekstowego */
+form input[type="text"],
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* Stylowanie przycisku submit */
+form input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Stylowanie błędnych komunikatów */
+form .error-message {
+    color: red;
+    font-size: 12px;
+}
+
+/* Stylowanie sukcesowych komunikatów */
+form .success-message {
+    color: green;
+    font-size: 12px;
+}
