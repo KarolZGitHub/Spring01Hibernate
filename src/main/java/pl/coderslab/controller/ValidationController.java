@@ -26,12 +26,9 @@ class ValidationController {
 
     @RequestMapping("/validate/{id}")
     String validateTest(@PathVariable long id, Model model) {
-        Optional<Book> book = bookService.findById(id);
-        Book second = new Book();
-        if(book.isPresent()){
-            second = book.get();
-        }
-        Set<ConstraintViolation<Book>> violations = validator.validate(second);
+        Book book = bookService.findById(id);
+
+        Set<ConstraintViolation<Book>> violations = validator.validate(book);
 
         if (!violations.isEmpty()) {
             for (ConstraintViolation<Book> constraintViolation : violations) {
