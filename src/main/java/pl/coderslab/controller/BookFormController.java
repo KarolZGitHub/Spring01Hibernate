@@ -19,7 +19,9 @@ import pl.coderslab.service.PublisherService;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -86,6 +88,50 @@ class BookFormController {
         return "book/list";
     }
 
+    // np. http://localhost:8080/book/search?title=Sample+Title+1
+    @GetMapping(path = "/book/search", params = "title")
+    String findByTile(@RequestParam String title, Model model) {
+
+        List<Book> books = bookService.findByTitle(title);
+        model.addAttribute("books", books);
+
+        return "book/list";
+
+    }
+
+    // np. http://localhost:8080/book/search?id=2
+    @GetMapping(path = "/book/search", params = "id")
+    String findByCategory(Category category, Model model) {
+
+        List<Book> books = bookService.findByCategory(category);
+        model.addAttribute("books", books);
+
+        return "book/list";
+    }
+
+    // np. http://localhost:8080/book/search?categoryId=2
+    @GetMapping(path = "/book/search", params = "categoryId")
+    String findByCategoryId(@RequestParam Long categoryId, Model model) {
+
+        List<Book> books = bookService.findByCategoryId(categoryId);
+        model.addAttribute("books", books);
+
+        return "book/list";
+    }
+
+    // http://localhost:8080/book/search/category?id=3
+    @GetMapping(path = "/book/search/category")
+    String findFirstByCategoryOrderByTitle(Category category, Model model) {
+
+        Optional<Book> book = bookService.findFirstByCategoryOrderByTitle(category);
+
+        List<Book> books = book.map(Collections::singletonList).orElse(Collections.emptyList());
+
+        model.addAttribute("books", books);
+
+        return "book/list";
+    }
+
     // umieszczenie w modelu pod kluczem 'publishers' kolekcji obiektow Publisher
     @ModelAttribute("publishers")
     Collection<Publisher> findAllPublishers() {
@@ -97,8 +143,9 @@ class BookFormController {
     Collection<Author> authors() {
         return authorService.findAll();
     }
+
     @ModelAttribute("categories")
-    List<Category> categories(){
+    List<Category> categories() {
         return categoryRepository.findAll();
     }
 

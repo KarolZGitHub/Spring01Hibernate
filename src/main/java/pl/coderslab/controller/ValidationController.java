@@ -13,6 +13,7 @@ import pl.coderslab.service.BookService;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -25,13 +26,18 @@ class ValidationController {
 
     @RequestMapping("/validate/{id}")
     String validateTest(@PathVariable long id, Model model) {
-        Book book = bookService.findById(id);
-        Set<ConstraintViolation<Book>> violations = validator.validate(book);
+        Optional<Book> book = bookService.findById(id);
+        Book second = new Book();
+        if(book.isPresent()){
+            second = book.get();
+        }
+        Set<ConstraintViolation<Book>> violations = validator.validate(second);
 
         if (!violations.isEmpty()) {
             for (ConstraintViolation<Book> constraintViolation : violations) {
                 log.error(constraintViolation.getPropertyPath() + " "
-                        + constraintViolation.getMessage()); }
+                        + constraintViolation.getMessage());
+            }
             model.addAttribute("violations", violations);
 
             return "/violation/violations";

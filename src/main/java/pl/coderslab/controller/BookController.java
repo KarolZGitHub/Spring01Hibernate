@@ -15,6 +15,7 @@ import pl.coderslab.service.BookService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -55,7 +56,7 @@ public class BookController {
     @GetMapping(path = "/book/{id}", produces = "text/plain;charset=utf-8")
     String findById(@PathVariable Long id) {
 
-        final Book book = bookService.findById(id);
+        final Optional<Book> book = bookService.findById(id);
 
         return Objects.nonNull(book) ? book.toString() : "Nie znaleziono książki o podanym id " + id;
     }
@@ -104,15 +105,16 @@ public class BookController {
     @PutMapping(path = "/book/{id}")
     void update(@PathVariable Long id, @RequestParam String title, @RequestParam int rating, @RequestParam String description) {
 
-        final Book book = bookService.findById(id);
+        final Optional<Book> book = bookService.findById(id);
 
-        if (Objects.nonNull(book)) {
+        if (book.isPresent()) {
+            Book book1 = new Book();
 
-            book.setTitle(title);
-            book.setRating(rating);
-            book.setDescription(description);
+            book1.setTitle(title);
+            book1.setRating(rating);
+            book1.setDescription(description);
 
-            bookService.update(book);
+            bookService.update(book1);
         }
     }
 

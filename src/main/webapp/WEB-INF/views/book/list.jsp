@@ -3,17 +3,20 @@
 <html>
 <head>
     <title>All books</title>
+    <link rel="stylesheet" type="text/css" href="/resources/table.css">
 </head>
 <body>
 
-<table>
+<table border="1">
     <tr>
         <th>Lp.</th>
         <th>Title</th>
         <th>Rating</th>
         <th>Description</th>
+        <th>Pages</th>
         <th>Publisher</th>
         <th>Authors</th>
+        <th>Category</th>
     </tr>
     <c:forEach items="${books}" var="book">
         <tr>
@@ -21,7 +24,9 @@
             <td>${book.title}</td>
             <td>${book.rating}</td>
             <td>${book.description}</td>
+            <td>${book.pages}</td>
             <td>${book.publisher.name}</td>
+            <td>${book.authors}</td>
             <td>${book.category.name}</td>
             <td>
                 <c:forEach items="${book.authors}" var="author">

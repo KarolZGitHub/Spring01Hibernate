@@ -25,9 +25,8 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public Book findById(Long id) {
-      Optional<Book> optionalBook = bookRepository.findById(id);
-      return optionalBook.orElse(null);
+    public Optional<Book> findById(Long id) {
+      return bookRepository.findById(id);
     }
 
     public List<Book> findAll() {
@@ -65,5 +64,8 @@ public class BookService {
     }
     public List<Book> findByCategoryId(long id){
         return bookRepository.findByCategoryId(id);
+    }
+    public Optional <Book> findFirstByCategoryOrderByTitle(Category category){
+        return bookRepository.findFirstByCategoryOrderByTitle(category);
     }
 }
