@@ -56,7 +56,7 @@ public class BookController {
     @GetMapping(path = "/book/{id}", produces = "text/plain;charset=utf-8")
     String findById(@PathVariable Long id) {
 
-        final Optional<Book> book = bookService.findById(id);
+        final Book book = bookService.findById(id);
 
         return Objects.nonNull(book) ? book.toString() : "Nie znaleziono książki o podanym id " + id;
     }
@@ -105,9 +105,9 @@ public class BookController {
     @PutMapping(path = "/book/{id}")
     void update(@PathVariable Long id, @RequestParam String title, @RequestParam int rating, @RequestParam String description) {
 
-        final Optional<Book> book = bookService.findById(id);
+        final Book book = bookService.findById(id);
 
-        if (book.isPresent()) {
+        if (book!=null) {
             Book book1 = new Book();
 
             book1.setTitle(title);
