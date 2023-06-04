@@ -1,10 +1,8 @@
 package pl.coderslab.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Book;
 import pl.coderslab.entity.Category;
@@ -57,7 +55,7 @@ public class BookService {
         bookRepository.deleteById(id);
     }
     public List<Book> findByTitle(String title){
-       return bookRepository.findByTitle(title);
+       return bookRepository.alaMaKota(title);
     }
     public List<Book> findByCategory(Category category){
         return bookRepository.findByCategory(category);
@@ -67,5 +65,14 @@ public class BookService {
     }
     public Optional <Book> findFirstByCategoryOrderByTitle(Category category){
         return bookRepository.findFirstByCategoryOrderByTitle(category);
+    }
+    public List<Book> findBookRatingBetween(int from,int to){
+        return bookRepository.bookRatingBetween(from,to);
+    }
+    public List<Book> findBookByPublisher(Publisher publisher){
+       return bookRepository.bookByPublisher(publisher);
+    }
+    public Optional<Book> FindBookByCategorySortedByTitle(Category category, String title){
+        return bookRepository.bookByCategorySortedByTitle(category,title);
     }
 }

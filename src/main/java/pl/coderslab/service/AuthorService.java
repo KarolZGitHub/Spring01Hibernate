@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.dao.AuthorDao;
 import pl.coderslab.entity.Author;
+import pl.coderslab.repository.AuthorRepository;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class AuthorService {
 
     private AuthorDao authorDao;
+    private AuthorRepository authorRepository;
 
     public AuthorService(AuthorDao authorDao) {
         this.authorDao = authorDao;
@@ -35,5 +37,11 @@ public class AuthorService {
 
     public void deleteById(Long id) {
         authorDao.deleteById(id);
+    }
+    public List<Author> FindAuthorWhereEmailStartsAt(String start){
+        return authorRepository.emailStartsAt(start);
+    }
+    public List<Author> findAuthorWherePeselStartsAt(String starts){
+        return authorRepository.peselStartsAt(starts);
     }
 }
